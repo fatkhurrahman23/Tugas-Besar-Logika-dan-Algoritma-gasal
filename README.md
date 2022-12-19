@@ -1,2 +1,2 @@
-# Tugas-Besar-Logika-dan-Algoritma-gasal
-Tugas Besar Logika dan Algoritma - Number Converter
+# Tugas Besar Logika dan Algoritma gasal
+Number Converter
