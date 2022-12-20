@@ -246,7 +246,7 @@ void tryAgain(int pilihan){
     char pilih;
 
     printf("\n\nIngin mengulangi lagi? [Y/N]: ");
-    scanf("%c", &pilih);
+    scanf(" %c", &pilih);
 
     switch (pilih){
         case 'Y':
