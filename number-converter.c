@@ -9,7 +9,7 @@
 #define TAB 9
 #define BKSP 8
 
-//fungsi
+//DEKLARASI FUNGSI
 //konvresi biner
 int binary_decimal(int);
 int binary_octal(int);
@@ -33,6 +33,8 @@ int hexadecimal_decimal(char []);
 void welcome();
 void list();
 void clean();
+void tryAgain(int);
+void userInput(int);
 
 //main function
 int main(){
@@ -160,7 +162,7 @@ void userInput(int pilihan){
             tryAgain(pilihan);
         }
     }
-    else if(pilihan == 4){ //HexaDecimal
+    else if(pilihan == 4){ //Hexadecimal
         char hexa[50];
         char ch;
         int i=0, j=0, k=0, validation=0;
@@ -193,8 +195,7 @@ void userInput(int pilihan){
             if((hexa[j] >= 'A' && hexa[j] <= 'F') || (hexa[j] >= 'a' && hexa[j] <= 'f') || isdigit(hexa[j])){
                 k++;
             }
-            else
-            {
+            else{
                 validation = 1;
                 break;
             }
@@ -206,8 +207,7 @@ void userInput(int pilihan){
             clean();
             return main();
         }
-        else
-        {
+        else{
             printf("\n");
 
             hexadecimal_binary(hexa);
@@ -216,7 +216,7 @@ void userInput(int pilihan){
             tryAgain(pilihan);
         }
     }
-    else  // Very rare case message
+    else
         printf("\n!! Unexpected Error occured. Report to program Administrator !! \n");
 }
 
@@ -227,14 +227,16 @@ int digitChecker(int num, int pilihan){
         while(temp != 0){
             rem = temp % 10;
 
-            if((rem >= 0 && rem <= 9) && pilihan == 1) // desimal, pilihan = 1
+            if((rem >= 0 && rem <= 9) && pilihan == 1){ // desimal, pilihan = 1
                 temp = temp / 10;
-            else if(rem == 0 || rem == 1 && pilihan == 2) // biner, pilihan = 2
+            }
+            else if(rem == 0 || rem == 1 && pilihan == 2){ // biner, pilihan = 2
                 temp = temp / 10;
-            else if(rem >= 0 && rem <=7 && pilihan == 3) // octal, pilihan = 3
+            }
+            else if(rem >= 0 && rem <=7 && pilihan == 3){ // octal, pilihan = 3
                 temp = temp / 10;
-            else
-            {
+            }
+            else{
                 validation = 1;
                 break;
             }
@@ -248,7 +250,7 @@ void tryAgain(int pilihan){
     printf("\n\nIngin mengulangi lagi? [Y/N]: ");
     scanf(" %c", &pilih);
 
-    switch (pilih){
+    switch(pilih){
         case 'Y':
         case 'y':
             userInput(pilihan);
@@ -311,7 +313,7 @@ int decimal_hexadecimal(int dec){
     int count, i;
     char hex[32];
 
-    count = 0; /*initialize index to zero*/
+    count = 0;
     while (dec > 0) {
         switch (dec % 16) {
         case 10:
@@ -333,14 +335,13 @@ int decimal_hexadecimal(int dec){
             hex[count] = 'F';
             break;
         default:
-            hex[count] = (dec % 16) + 0x30; /*converted into char value*/
+            hex[count] = (dec % 16) + 0x30; /*konversi ke char value*/
         }
         dec = dec / 16;
         count++;
     }
 
-    /*print value in reverse order*/
-    printf("\nHexadecimal value is: ");
+    printf("\nNilai Hexadesimal: ");
     for (i = (count - 1); i >= 0; i--){
         printf("%c", hex[i]);
     }
@@ -424,7 +425,7 @@ int binary_hexadecimal(int bin){
         len++;
     }
 
-    printf("\nHexa-Decimal Number: ");
+    printf("\nNilai Hexadesimal: ");
     for(i=len-1;i>=0;i--){
         switch(remain_hexa[i]){
             case 10:
@@ -515,7 +516,7 @@ int octal_hexadecimal(int oct){
         len++;
     }
 
-    printf("\nHexa-Decimal Number: ");
+    printf("\nNilai Hexadesimal: ");
 
     for(i=len-1;i>=0;i--){
         switch(rem[i]){
@@ -576,7 +577,7 @@ int hexadecimal_decimal(char hexa[]){
 int hexadecimal_binary(char hexa[]){
     int i=0;
 
-    printf("\nBinary Number: ");
+    printf("\nNilai biner: ");
 
     for(i=0;i<strlen(hexa);i++){
         switch (hexa[i]){
@@ -635,7 +636,7 @@ int hexadecimal_binary(char hexa[]){
                 printf("1111");
                 break;
             default:
-                printf("\n Invalid hexa digit %c ", hexa[i]);
+                printf("\nDigit hexadesimal salah. %c ", hexa[i]);
         }
     }
 }
@@ -677,7 +678,7 @@ int hexadecimal_octal(char hexa[]){
         len++;
     }
 
-    printf("\nOctal Number: ");
+    printf("\nNilai Oktal: ");
     for(i=len-1;i>=0;i--){
         printf("%d",rem[i]);
     }
